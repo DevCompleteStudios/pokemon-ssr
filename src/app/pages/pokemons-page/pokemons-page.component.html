@@ -3,9 +3,11 @@
 <h2 class="text-xl">Pagina actual {{currentPage()}}</h2>
 <hr class="my-2">
 
-<pokemon-list [pokemons]="pokemons()"/>
-
-<!-- TODO: Pokemon List Sekeleton -->
+@if (pokemons()) {
+    <pokemon-list [pokemons]="pokemons()"/>
+}@else {
+    <pokemon-list-skeleton/>
+}
 
 <!-- TODO: Pagination -->
 <div class="flex items-center justify-between">
