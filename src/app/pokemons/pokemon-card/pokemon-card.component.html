@@ -5,13 +5,12 @@
         class="w-24 h-24"
         width="96px"
         height="96px"
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-        alt="Pikachu"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon().id}}.png"
+        [alt]="pokemon().name"
     >
 
     <div class="text-center mt-2">
-        <h2 class="text-xl font-bold capitalize text-white">Pikachu</h2>
-
+        <h2 class="text-xl font-bold capitalize text-white"> {{pokemon().name}} </h2>
     </div>
 </div>
 

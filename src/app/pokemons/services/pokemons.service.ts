@@ -29,8 +29,6 @@ export class PokemonsService {
             name: r.name,
           }
         ))),
-
-        tap(p => console.log(p)),
       );
 }
 

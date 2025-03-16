@@ -2,6 +2,7 @@ import { ApplicationRef, Component, inject, OnDestroy, OnInit, signal } from '@a
 import { PokemonListComponent } from "../../pokemons/pokemon-list/pokemon-list.component";
 import { PokemonListSkeletonComponent } from "../../pokemons/pokemon-list-skeleton/pokemon-list-skeleton.component";
 import { PokemonsService } from '../../pokemons/services/pokemons.service';
+import { ISimplePokemon } from '../../pokemons/interfaces/ISimplePokemon';
 
 @Component({
   selector: 'pokemons-page',
@@ -9,6 +10,8 @@ import { PokemonsService } from '../../pokemons/services/pokemons.service';
   templateUrl: './pokemons-page.component.html'
 })
 export default class PokemonsPageComponent implements OnInit {
+
+  protected pokemons = signal<ISimplePokemon[]>([]);
 
   constructor(
     private pokemonsService:PokemonsService,
@@ -22,9 +25,7 @@ export default class PokemonsPageComponent implements OnInit {
 
   public loadPokemons(page:number = 0){
     this.pokemonsService.loadPage(page)
-      .subscribe(pokemons => {
-        console.log('Xd');
-      });
+      .subscribe(p => this.pokemons.set(p));
   }
 
 
