@@ -1,0 +1,39 @@
+
+@if (!pokemon()) {
+    <div class="flex justify-center">
+        <h1 class="text-4xl font-bold">Loading...</h1>
+    </div>
+}@else {
+    @let poke = pokemon()!;
+
+    <section class="flex flex-col justify-center">
+        <div class="flex justify-center">
+            <h1 class="text-4xl font-bold capitalize my-5"> {{poke?.name}} </h1>
+        </div>
+    </section>
+
+    <section class="flex flex-col w-full items-center justify-center">
+        <img
+            class="w-64 h-64"
+            width="256px"
+            height="256px"
+            [src]="poke?.sprites?.other?.['official-artwork']?.front_default"
+            [alt]="poke?.name"
+        >
+        @if (poke.cries.latest) {
+            <audio controls class="my-10">
+                <source [src]="poke.cries.latest" type="audio/wav"/>
+            </audio>
+        }
+    </section>
+
+    <section class="flex flex-col justify-center">
+        <h2 class="text-2xl font-bold mt-2">Abilites</h2>
+        <div class="flex flex-wrap items-center mt-1">
+            @for (ability of poke.abilities; track $index) {
+                <span class="mx-2">{{ability.ability.name}}</span>
+            }
+        </div>
+    </section>
+}
+
