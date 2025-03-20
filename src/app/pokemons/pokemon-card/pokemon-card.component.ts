@@ -11,8 +11,4 @@ export class PokemonCardComponent {
 
   public pokemon = input.required<ISimplePokemon>();
 
-  // private logEffect = effect(() => {
-  //   console.log("Pokemon card = " + this.pokemon());
-  // })
-
 }

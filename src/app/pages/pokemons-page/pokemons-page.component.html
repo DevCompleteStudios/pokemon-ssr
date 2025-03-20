@@ -3,14 +3,20 @@
 <h2 class="text-xl">Pagina actual {{currentPage()}}</h2>
 <hr class="my-2">
 
-@if (pokemons()) {
+@if (pokemons().length > 0) {
     <pokemon-list [pokemons]="pokemons()"/>
 }@else {
     <pokemon-list-skeleton/>
 }
 
-<!-- TODO: Pagination -->
 <div class="flex items-center justify-between">
-    <button (click)="loadPokemons(-1)" class="mt-4">Prev</button>
-    <button (click)="loadPokemons(+1)" class="mt-4">Next</button>
+    <button
+        [disabled]="currentPage() == 1"
+        [routerLink]="['/pokemons/page', currentPage()! - 1]"
+        class="mt-4"
+    >Prev</button>
+
+    <button
+    [routerLink]="['/pokemons/page', currentPage()! + 1]"
+    class="mt-4">Next</button>
 </div>
