@@ -28,11 +28,9 @@ export default class PokemonsPageComponent {
   protected loadOnPageChange = effect(() => this.loadPokemons(this.currentPage()))
 
   public loadPokemons(page:number = 0){
-    const pageLoad = this.currentPage()! + page;
-
-    this.pokemonsService.loadPage(pageLoad)
+    this.pokemonsService.loadPage(page)
       .pipe(
-        tap(() => this.title.setTitle("Pokemons SSR - page " + pageLoad))
+        tap(() => this.title.setTitle("Pokemons SSR - page " + page))
       )
       .subscribe(p => this.pokemons.set(p));
   }
